@@ -1,104 +1,109 @@
-Automated UI Testing Project
+
+# **End-to-End UI Automation Framework**
 
 ## Overview
 
-This repository contains automated end-to-end UI tests for the Digital Nexus AI web application.
-The project is implemented using Playwright (Python), following modern automation principles such as:
+This repository contains an end-to-end UI automation framework built using Playwright (Python).
+The project follows modern automation testing practices including:
 
 * Page Object Model (POM)
-* Modular and reusable components
-* Layered architecture (tests, page objects, data, fixtures)
-* Clear assertions and error-handling
-* Positive and negative scenarios
+* Modular and maintainable folder structure
+* Dedicated test data management
+* Reusable page interaction methods
+* Clear assertions and negative test coverage
+* Structured reporting and tracing support
 
-The automated tests currently cover:
+The automated tests currently include:
 
-* Login
-* Logout
+* Login & Logout
 * Updating personal information
-* Password reset (valid and invalid email)
-* Registration (invalid captcha)
+* Password reset (valid and invalid cases)
+* Registration with invalid captcha
 
 ---
 
 ## Project Structure
 
 ```
-Digital_Nexus_AI/
-├── pageObjects/               # Page Object Model classes
-│   ├── login_page.py
-│   ├── logout_page.py
-│   ├── info_page.py
-│   ├── pwd_reset_page.py
-│   └── register_page.py
+QA Automation/
+├── .github/                    
+├── pageObjects/                
+│   ├── InfoPage.py
+│   ├── LoginPage.py
+│   ├── LogoutPage.py
+│   ├── pageDropDown.py
+│   ├── POManager.py
+│   ├── PwdResetPage.py
+│   └── RegisterPage.py
 │
-├── testData/                  # Test data files
+├── test-results/               
+│
+├── testData/                  
 │   ├── credentials.py
-│   ├── personInfo.py
 │   ├── duplicaInfo.py
+│   ├── personInfo.py
 │   └── registData.py
 │
-├── tests/                     # Test scripts
-│   ├── test_login_and_logout.py
-│   ├── test_person_info_edit.py
-│   ├── test_reset_password_and_verify.py
-│   └── test_register_with_invalid_captcha.py
+├── tests/                     
+│   ├── conftest.py
+│   ├── test_login_logout.py
+│   ├── test_person_info.py
+│   ├── test_pwd_reset.py
+│   └── test_register_invalid_captcha.py
 │
-├── playwright.config.js
+├── tests-examples/            
+│
 ├── package.json
-├── requirements.txt
+├── package-lock.json
+├── playwright.config.js
+├── .gitignore
 └── README.md
 ```
 
 ---
 
-## Prerequisites
+## Clone the Repository
 
-The following tools must be installed:
+```
+https://github.com/danielchen0079/End-to-End-UI-Automation-Framework.git
+```
 
-* Node.js >= 14.x
-* Python >= 3.8
-* Playwright (installed via npm)
-* pytest (for running Python tests)
+```bash
+git clone https://github.com/danielchen0079/End-to-End-UI-Automation-Framework.git
+cd End-to-End-UI-Automation-Framework/"QA Automation"
+```
 
 ---
 
 ## Installation
 
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/danielchen0079/End-to-End-UI-Automation-Framework.git
-cd End-to-End-UI-Automation-Framework/QA\ Automation
-```
-
-### 2. Install Node.js dependencies
+### Install Node.js Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Install Playwright browsers
+### Install Playwright Browsers
 
 ```bash
 npx playwright install
-```
-
-### 4. (Optional) Set up Python environment
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
 ```
 
 ---
 
 ## Configuration
 
-Update test data in the `testData` folder.
+### Test Data Location
 
-### Example (credentials.py)
+All editable test data is stored under:
+
+```
+testData/
+```
+
+Examples:
+
+**credentials.py**
 
 ```python
 valid_user = {
@@ -107,7 +112,7 @@ valid_user = {
 }
 ```
 
-### Example (personInfo.py)
+**personInfo.py**
 
 ```python
 user_info = {
@@ -119,7 +124,7 @@ user_info = {
 }
 ```
 
-### Example (registData.py)
+**registData.py**
 
 ```python
 regist_data = {
@@ -137,73 +142,46 @@ regist_data = {
 ### Run all tests
 
 ```bash
-pytest
+pytest tests/
 ```
 
-### Run a specific test
+### Run a specific test file
 
 ```bash
-pytest tests/test_login_and_logout.py
+pytest tests/test_login_logout.py
 ```
 
-### Run Playwright tests (JavaScript version)
-
-```bash
-npx playwright test
-```
-
----
-
-## Test Coverage
-
-### 1. Login & Logout
-
-* Valid login
-* Logout successful
-* Assertion: redirected to login page
-
-### 2. Update Personal Information
-
-* Update full user profile
-* Assert success message
-* Assert data persists after refresh
-
-### 3. Reset Password
-
-* Valid email → success message
-* Unknown email → negative scenario
-
-### 4. Registration
-
-* Invalid captcha → error message
-* Assert account is not created
-
----
-
-## Test Design Approach
-
-This project follows several key principles:
-
-* Clear test names and actions
-* Separate test logic from page objects
-* Consistent assertions
-* Error handling with waits and visibility checks
-* Edge cases included (invalid captcha, unknown email)
-
----
-
-## Reports and Debugging
-
-Playwright generates:
-
-* `playwright-report/` — HTML report
-* `test-results/` — screenshots, traces, videos
-
-To open report:
+### Show Playwright HTML Report
 
 ```bash
 npx playwright show-report
 ```
 
 ---
+
+## Test Coverage Summary
+
+### Login and Logout
+
+* Valid login
+* Logout action
+* Assertion: redirected to login page
+
+### Update Personal Information
+
+* Edit profile with full dataset
+* Assertion: success message
+* Assertion: data persists after refresh
+
+### Password Reset
+
+* Valid email → success message
+* Unknown email → validation failure
+
+### Registration
+
+* Invalid captcha → error under input field
+
+---
+
 
