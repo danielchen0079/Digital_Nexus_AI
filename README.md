@@ -68,8 +68,8 @@ The following tools must be installed:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/Digital_Nexus_AI.git
-cd Digital_Nexus_AI
+git clone https://github.com/danielchen0079/End-to-End-UI-Automation-Framework.git
+cd End-to-End-UI-Automation-Framework/QA\ Automation
 ```
 
 ### 2. Install Node.js dependencies
