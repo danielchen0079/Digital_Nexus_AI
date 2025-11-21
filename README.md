@@ -207,15 +207,3 @@ npx playwright show-report
 
 ---
 
-## License
-
-This project is licensed under the MIT License.
-
----
-
-## Contact
-
-For questions or issues, please open a GitHub issue.
-
----
-
